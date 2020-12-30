@@ -1,14 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+
+import { WishList } from "./models/WishList";
+
+const wishList = WishList.create({
+  items: [
+    {
+      name: "Machine Gun Preacher",
+      price: 7.35,
+      image:""
+    },
+    {
+      name: "Lego Mindstorms EV3",
+      price: 349.95,
+      image:""
+    },
+  ],
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App wishList={wishList} />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
