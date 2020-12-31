@@ -24,26 +24,43 @@ export const WishListItemView = ({ item }: { item: IWishListItem }) => {
   };
 
   const renderEditable = () => {
-      return (
-        <li className='Item'>
-          <WishListItemEdit item={itemClone} />
-          <button onClick={onSaveEdit}>💾</button>
-          <button onClick={onCancelEdit}>Cancel</button>
-        </li>
-      );
+    return (
+      <li className='Item'>
+        <WishListItemEdit item={itemClone} />
+        <span className='text-xs flex items-center'>
+          <button
+          className='m-1 inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none'
+           onClick={onSaveEdit}>💾</button>
+          <button 
+          className='m-1 inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-black uppercase transition bg-gray-100 rounded shadow ripple hover:shadow-lg hover:bg-gray-200 focus:outline-none'
+          onClick={onCancelEdit}>Cancel</button>
+        </span>
+      </li>
+    );
   };
 
   return isEditing ? (
     renderEditable()
   ) : (
     <li className='item'>
-      {item.image && <img alt='Item' src={item.image} />}
       <h3>{item.name}</h3>
-      <span>{item.price}</span>
-      <span>
-        <button onClick={toggleEdit}>Edit</button>
-        <button onClick={item.remove}>❌</button>
-      </span>
+      <span>${item.price}</span>
+      <div>
+        <span>
+          <button
+            className='m-1 inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none'
+            onClick={toggleEdit}
+          >
+            Edit
+          </button>
+          <button
+            className='m-1 inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-black uppercase transition bg-gray-100 rounded shadow ripple hover:shadow-lg hover:bg-gray-200 focus:outline-none'
+            onClick={item.remove}
+          >
+            ❌
+          </button>
+        </span>
+      </div>
     </li>
   );
 };

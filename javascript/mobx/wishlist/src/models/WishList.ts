@@ -1,6 +1,4 @@
-import { types, Instance, getParent, destroy, getParentOfType } from "mobx-state-tree";
-
-const data = {};
+import { types, Instance, destroy, getParentOfType } from "mobx-state-tree";
 
 export interface IWishListItem extends Instance<typeof WishListItem> { }
 export interface IWishList extends Instance<typeof WishList> { }
@@ -8,7 +6,7 @@ export interface IWishList extends Instance<typeof WishList> { }
 export const WishListItem = types.model({
   name: types.string,
   price: types.number,
-  image: ""
+  image: "",
 }).actions(self => ({
   changeName(newName: string) {
     self.name = newName
