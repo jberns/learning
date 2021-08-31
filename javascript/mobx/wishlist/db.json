@@ -1,0 +1,78 @@
+{
+  "suggestions_f": [
+    {
+      "name": "Barbie",
+      "price": 42
+    },
+    {
+      "name": "Nail Polish",
+      "price": 3.5
+    }
+  ],
+  "suggestions_m": [
+    {
+      "name": "LegoMindstorms",
+      "price": 349.95
+    },
+    {
+      "name": "Batman",
+      "price": 4.2
+    }
+  ],
+  "users": [
+    {
+      "id": "a342",
+      "name": "Homer",
+      "gender": "m",
+      "wishList": {
+        "items": []
+      },
+      "recipient": "b1ll"
+    },
+    {
+      "id": "fc2",
+      "name": "Marge",
+      "gender": "f",
+      "wishList": {
+        "items": [
+          {
+            "name": "Nail Polish",
+            "price": 444,
+            "image": ""
+          }
+        ]
+      },
+      "recipient": "a342"
+    },
+    {
+      "id": "j05h",
+      "name": "Josh",
+      "gender": "m",
+      "wishList": {
+        "items": [
+          {
+            "name": "Lego Batman",
+            "price": 42,
+            "image": ""
+          }
+        ]
+      },
+      "recipient": "fc2"
+    },
+    {
+      "id": "b1ll",
+      "name": "Bill",
+      "gender": "m",
+      "wishList": {
+        "items": [
+          {
+            "name": " Mind Storms v4",
+            "price": 555.55,
+            "image": ""
+          }
+        ]
+      },
+      "recipient": "j05h"
+    }
+  ]
+}

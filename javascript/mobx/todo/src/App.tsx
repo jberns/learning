@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import { useLocalStore, useObserver, observer } from "mobx-react";
 
 interface IStore {

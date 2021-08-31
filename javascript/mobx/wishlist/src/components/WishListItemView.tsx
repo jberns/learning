@@ -3,7 +3,13 @@ import { IWishListItem } from "../models/WishList";
 import { WishListItemEdit } from "./WishListItemEdit";
 import { clone, getSnapshot, applySnapshot } from "mobx-state-tree";
 
-export const WishListItemView = ({ item }: { item: IWishListItem }) => {
+export const WishListItemView = ({
+  item,
+  readonly,
+}: {
+  item: IWishListItem;
+  readonly: boolean;
+}) => {
   const [isEditing, setIsEditing] = useState(false);
   const itemClone = clone(item);
 
@@ -27,14 +33,22 @@ export const WishListItemView = ({ item }: { item: IWishListItem }) => {
     return (
       <li className='Item'>
         <WishListItemEdit item={itemClone} />
-        <span className='text-xs flex items-center'>
-          <button
-          className='m-1 inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none'
-           onClick={onSaveEdit}>💾</button>
-          <button 
-          className='m-1 inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-black uppercase transition bg-gray-100 rounded shadow ripple hover:shadow-lg hover:bg-gray-200 focus:outline-none'
-          onClick={onCancelEdit}>Cancel</button>
-        </span>
+        {!readonly && (
+          <span className='text-xs flex items-center'>
+            <button
+              className='m-1 inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none'
+              onClick={onSaveEdit}
+            >
+              💾
+            </button>
+            <button
+              className='m-1 inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-black uppercase transition bg-gray-100 rounded shadow ripple hover:shadow-lg hover:bg-gray-200 focus:outline-none'
+              onClick={onCancelEdit}
+            >
+              Cancel
+            </button>
+          </span>
+        )}
       </li>
     );
   };
@@ -45,22 +59,24 @@ export const WishListItemView = ({ item }: { item: IWishListItem }) => {
     <li className='item'>
       <h3>{item.name}</h3>
       <span>${item.price}</span>
-      <div>
-        <span>
-          <button
-            className='m-1 inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none'
-            onClick={toggleEdit}
-          >
-            Edit
-          </button>
-          <button
-            className='m-1 inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-black uppercase transition bg-gray-100 rounded shadow ripple hover:shadow-lg hover:bg-gray-200 focus:outline-none'
-            onClick={item.remove}
-          >
-            ❌
-          </button>
-        </span>
-      </div>
+      {!readonly && (
+        <div>
+          <span>
+            <button
+              className='m-1 inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none'
+              onClick={toggleEdit}
+            >
+              Edit
+            </button>
+            <button
+              className='m-1 inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-black uppercase transition bg-gray-100 rounded shadow ripple hover:shadow-lg hover:bg-gray-200 focus:outline-none'
+              onClick={item.remove}
+            >
+              ❌
+            </button>
+          </span>
+        </div>
+      )}
     </li>
   );
 };

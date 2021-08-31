@@ -7,8 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import { WishList, IWishList } from "./models/WishList";
 import { Group, IGroup, Gender } from "./models/Group";
 
-import { onSnapshot, getSnapshot } from "mobx-state-tree";
-import { getNameOfDeclaration } from "typescript";
+import { onSnapshot, getSnapshot, addMiddleware } from "mobx-state-tree";
 
 const LOCAL_STORAGE = "wishlistapp";
 
@@ -27,20 +26,7 @@ const LOCAL_STORAGE = "wishlistapp";
 //   ],
 // };
 
-let initialState = {
-  users: {
-    a342: {
-      id: "a342",
-      name: "Homer",
-      gender: Gender.m,
-    },
-    fc2: {
-      id: "fc2",
-      name: "Marge",
-      gender: Gender.f,
-    },
-  },
-};
+let initialState = { users: {} };
 
 // //Loading wishlist form local storage
 // if (typeof localStorage.getItem(LOCAL_STORAGE) === "string") {
@@ -56,8 +42,19 @@ let initialState = {
 //   localStorage.setItem(LOCAL_STORAGE, JSON.stringify(snapshot));
 // });
 
-const group = Group.create(initialState);
-console.log(group);
+declare global {
+  interface Window {
+    group: any;
+  }
+}
+
+const group = (window.group = Group.create(initialState));
+// group.addUsersFlow();
+
+addMiddleware(group, (call, next) => {
+  // console.log(`[${call.type}] ${call.name}`);
+  return next(call);
+});
 
 //Render App
 function renderApp() {
@@ -79,6 +76,13 @@ if (module.hot) {
   });
 
   module.hot.accept(["./models/WishList"], () => {
+    //new model definitions
+    // const snapshot = getSnapshot(wishList);
+    // wishList = WishList.create(snapshot);
+    renderApp();
+  });
+
+  module.hot.accept(["./models/Group"], () => {
     //new model definitions
     // const snapshot = getSnapshot(wishList);
     // wishList = WishList.create(snapshot);

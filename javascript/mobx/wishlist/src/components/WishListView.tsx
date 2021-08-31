@@ -5,14 +5,14 @@ import { IWishList } from "../models/WishList";
 import { observer } from "mobx-react";
 
 export const WishListView = observer(
-  ({ wishList }: { wishList: IWishList }) => (
+  ({ wishList, readonly=false }: { wishList: IWishList, readonly?:boolean }) => (
     <div className='list'>
       <div className='bg-blue-300 w-full p-8 flex justify-center font-sans'>
         <div className='rounded bg-gray-200 w-1/2 p-2'>
           <ul>
             {wishList.items.map((item, idx) => (
               <div className='bg-white p-2 rounded mt-1 border-b border-grey cursor-pointer hover:bg-grey-lighter'>
-                <WishListItemView key={idx} item={item} />
+                <WishListItemView key={idx} item={item} readonly={readonly} />
               </div>
             ))}
           </ul>
@@ -26,7 +26,7 @@ export const WishListView = observer(
 
       </div>
       
-      <WishListItemEntry wishList={wishList} />
+      {!readonly && <WishListItemEntry wishList={wishList} />}
     </div>
   )
 );
