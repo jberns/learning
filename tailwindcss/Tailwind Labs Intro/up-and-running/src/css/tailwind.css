@@ -5,35 +5,15 @@
 
 @layer components {
   .btn {
-    @apply inline-block
-    rounded-lg
-    px-5
-    py-3
-    uppercase
-    tracking-wider
-    font-semibold
-    text-sm
-    sm:text-base
-    focus:outline-none
-    focus:ring
-    focus:ring-offset-2
-    focus:ring-opacity-50;
+    @apply inline-block px-5 py-3 text-sm font-semibold tracking-wider uppercase rounded-lg sm:text-base focus:outline-none focus:ring focus:ring-offset-2 focus:ring-opacity-50;
   }
 
   .btn-primary {
-    @apply bg-indigo-500
-    hover:bg-indigo-400
-    active:bg-indigo-600
-    text-white
-    focus:ring-indigo-400;
+    @apply text-white bg-brand hover:bg-brand-light active:bg-brand-dark focus:bg-brand-light
   }
 
   .btn-secondary {
     @apply
-    bg-gray-300
-    hover:bg-gray-200
-    active:bg-gray-400
-    text-gray-800
-    focus:ring-gray-300;
+    text-gray-800 bg-gray-300 hover:bg-gray-200 active:bg-gray-400 focus:ring-gray-300;
   }
 }

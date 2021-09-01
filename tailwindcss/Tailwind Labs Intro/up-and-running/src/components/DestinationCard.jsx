@@ -20,7 +20,7 @@ export const DestinationCard = (props) => {
         </p>
         <div className='mt-4'>
           <a
-            className='text-sm font-semibold text-indigo-500 hover:text-indigo-400'
+            className='text-sm font-semibold text-brand-dark hover:text-brand'
             href='#'
           >
             Explore {destination.propertyCount} properties
